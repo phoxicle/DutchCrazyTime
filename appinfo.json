@@ -7,14 +7,7 @@
     "longName": "Tutorial 1",
     "projectType": "native",
     "resources": {
-        "media": [
-            {
-                "file": "fonts/cac_champagne.ttf",
-                "name": "FONT_CHAMPAGNE_32",
-                "targetPlatforms": null,
-                "type": "font"
-            }
-        ]
+        "media": []
     },
     "sdkVersion": "3",
     "shortName": "Tutorial 1",

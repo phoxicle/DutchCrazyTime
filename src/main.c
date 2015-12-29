@@ -3,7 +3,7 @@
 
 static Window *s_main_window;
 static TextLayer *s_time_layer;
-//static GFont s_time_font;
+static Layer *flag_layer;
 
 static const char * num_strings[] = {"nul", "een", "twee", "drie", "vier", "vijf", "zes", "zeven", "acht", "negen", 
                         "tien", "elf", "twaalf", "dertien", "viertien"};
@@ -63,13 +63,6 @@ static void update_time() {
   static char s_buffer[50];
   get_time_string(s_buffer, hour, min);
 
-  // Write the current hours and minutes into a buffer
-  //static char s_buffer[8];
-  //strftime(s_buffer, sizeof(s_buffer), clock_is_24h_style() ? "%H:%M" : "%I:%M", tick_time);
-  
-  //static char s_buffer[8];
-  
-
   // Display this time on the TextLayer
   text_layer_set_text(s_time_layer, s_buffer);
 }
@@ -78,20 +71,36 @@ static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
   update_time();
 }
 
+static void flag_layer_draw(Layer *layer, GContext *ctx) {
+  GRect bounds = layer_get_bounds(layer);
+  const int16_t h = bounds.size.h / 3;
+   
+  // Red
+  graphics_context_set_fill_color(ctx, GColorRed);
+  graphics_fill_rect(ctx, GRect(0, 0, bounds.size.w, h), 0, GCornerNone);
+  
+  // White
+  graphics_context_set_fill_color(ctx, GColorWhite);
+  graphics_fill_rect(ctx, GRect(0, h, bounds.size.w, h), 0, GCornerNone);
+  
+  // Blue
+  graphics_context_set_fill_color(ctx, GColorBlue);
+  graphics_fill_rect(ctx, GRect(0, 2*h, bounds.size.w, h), 0, GCornerNone);
+}
+
 static void main_window_load(Window *window) {
   // Get information about the Window
   Layer *window_layer = window_get_root_layer(window);
   GRect bounds = layer_get_bounds(window_layer);
 
+  // Create the flag layer
+  flag_layer = layer_create(bounds);
+  layer_set_update_proc(flag_layer, flag_layer_draw);
+  layer_add_child(window_layer, flag_layer);
+  
   // Create the TextLayer with specific bounds
-  s_time_layer = text_layer_create(
-      GRect(0, 25, bounds.size.w, 200));
+  s_time_layer = text_layer_create(GRect(0, 25, bounds.size.w, 150));
   
-  //text_layer_set_overflow_mode(s_time_layer, GTextOverflowModeWordWrap);
-  
-  // Create GFont
-  //s_time_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_CHAMPAGNE_32));
-
   // Improve the layout to be more like a watchface
   text_layer_set_background_color(s_time_layer, GColorClear);
   text_layer_set_text_color(s_time_layer, GColorBlack);
@@ -100,22 +109,20 @@ static void main_window_load(Window *window) {
 
   // Add it as a child layer to the Window's root layer
   layer_add_child(window_layer, text_layer_get_layer(s_time_layer));
-  
-  
 }
 
 static void main_window_unload(Window *window) {
   // Destroy TextLayer
   text_layer_destroy(s_time_layer);
   
-  // Unload GFont
-  //fonts_unload_custom_font(s_time_font);
+  // Destroy flag layer
+  layer_destroy(flag_layer);
 }
 
 static void init() {
   // Create main Window element and assign to pointer
   s_main_window = window_create();
-  window_set_background_color(s_main_window, GColorElectricBlue);
+  //window_set_background_color(s_main_window, GColorBlue);
 
   // Set handlers to manage the elements inside the Window
   window_set_window_handlers(s_main_window, (WindowHandlers) {
