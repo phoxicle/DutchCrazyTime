@@ -1,0 +1,30 @@
+{
+    "appKeys": {},
+    "capabilities": [
+        ""
+    ],
+    "companyName": "Pheide",
+    "longName": "Tutorial 1",
+    "projectType": "native",
+    "resources": {
+        "media": [
+            {
+                "file": "fonts/cac_champagne.ttf",
+                "name": "FONT_CHAMPAGNE_32",
+                "targetPlatforms": null,
+                "type": "font"
+            }
+        ]
+    },
+    "sdkVersion": "3",
+    "shortName": "Tutorial 1",
+    "targetPlatforms": [
+        "basalt",
+        "chalk"
+    ],
+    "uuid": "0edc2df0-d008-480b-ae10-9b1b7c6c2982",
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": true
+    }
+}
