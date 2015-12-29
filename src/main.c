@@ -5,7 +5,7 @@ static Window *s_main_window;
 static TextLayer *s_time_layer;
 static Layer *flag_layer;
 
-static const char * num_strings[] = {"nul", "een", "twee", "drie", "vier", "vijf", "zes", "zeven", "acht", "negen", 
+static const char * num_strings[] = {"nul", "één", "twee", "drie", "vier", "vijf", "zes", "zeven", "acht", "negen", 
                         "tien", "elf", "twaalf", "dertien", "viertien"};
 
 static const char* get_hour_str(int hour) {
@@ -84,7 +84,7 @@ static void flag_layer_draw(Layer *layer, GContext *ctx) {
   graphics_fill_rect(ctx, GRect(0, h, bounds.size.w, h), 0, GCornerNone);
   
   // Blue
-  graphics_context_set_fill_color(ctx, GColorBlue);
+  graphics_context_set_fill_color(ctx, GColorBlueMoon);
   graphics_fill_rect(ctx, GRect(0, 2*h, bounds.size.w, h), 0, GCornerNone);
 }
 
