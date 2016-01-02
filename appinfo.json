@@ -4,18 +4,26 @@
         ""
     ],
     "companyName": "Pheide",
-    "longName": "Tutorial 1",
+    "longName": "Dutch Crazy Time",
     "projectType": "native",
     "resources": {
-        "media": []
+        "media": [
+            {
+                "file": "images/dutch_clock_logo_28.png",
+                "menuIcon": true,
+                "name": "IMAGE_DUTCH_CLOCK_ICON",
+                "targetPlatforms": null,
+                "type": "bitmap"
+            }
+        ]
     },
     "sdkVersion": "3",
-    "shortName": "Tutorial 1",
+    "shortName": "Dutch Crazy Time",
     "targetPlatforms": [
         "basalt",
         "chalk"
     ],
-    "uuid": "0edc2df0-d008-480b-ae10-9b1b7c6c2982",
+    "uuid": "94552a71-3391-4970-bbd3-b8a558dbb7ab",
     "versionLabel": "1.0",
     "watchapp": {
         "watchface": true
