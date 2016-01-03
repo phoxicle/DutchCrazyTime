@@ -12,6 +12,8 @@ static const char* get_hour_str(int hour) {
   int normalized_hour;
   if (hour > 12) {
     normalized_hour = hour - 12;
+  } else if (hour == 0) {
+    normalized_hour = 12;
   } else {
     normalized_hour = hour;
   }
