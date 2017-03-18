@@ -6,7 +6,7 @@ static TextLayer *s_time_layer;
 static Layer *flag_layer;
 
 static const char * num_strings[] = {"nul", "één", "twee", "drie", "vier", "vijf", "zes", "zeven", "acht", "negen", 
-                        "tien", "elf", "twaalf", "dertien", "viertien"};
+                        "tien", "elf", "twaalf", "dertien", "veertien"};
 
 static const char* get_hour_str(int hour) {
   int normalized_hour;
